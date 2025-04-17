@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<div class="row">
+  <div class="col-md-12">
+    <h2>{% trans _("لوحة التحكم") %}</h2>
+    <hr>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{% trans _("ملفي الشخصي") %}</h5>
+            <p class="card-text">{% trans _("اسم المستخدم:") %}{{ user.username }}</p>
+            <p class="card-text">{% trans _("نوع المستخدم:") %}{{ user.get_user_type_display }}</p>
+            {% if user.company_name %}
+            <p class="card-text">{% trans _("اسم الشركة:") %}{{ user.company_name }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        {% if user.user_type == 'OWNER' %}
+          {% include 'pages/owner_dashboard.html' %}
+        {% elif user.user_type == 'INVESTOR' %}
+          {% include 'pages/investor_dashboard.html' %}
+        {% elif user.user_type == 'TENANT' %}
+          {% include 'pages/tenant_dashboard.html' %}
+        {% elif user.user_type == 'SIGNER' %}
+          {% include 'pages/signer_dashboard.html' %}
+        {% elif user.user_type == 'ADMIN' %}
+          {% include 'pages/admin_dashboard.html' %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

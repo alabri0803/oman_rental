@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<div class="row">
+  <div class="col-md-8 mx-auto text-center">
+    <h1>{% trans _("مرحبًا بك في نظام إدارة الإيجارات") %}</h1>
+    <p>{% trans _("نظام إدارة الإيجارات هو نظام متكامل يتيح لك إدارة جميع عمليات الإيجار في السلطنة") %}</p>
+    <div class="mt-5">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{% trans _("المحلات التجارية") %}</h5>
+              <p class="card-text">{% trans _("إدارة عقود المحلات التجارية") %}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{% trans _("المكاتب") %}</h5>
+              <p class="card-text">{% trans _("إدارة عقود المكاتب") %}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{% trans _("الشقق") %}</h5>
+              <p class="card-text">{% trans _("إدارة عقود الشقق") %}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% block content %}
