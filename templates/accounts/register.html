@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load i18n crispy_forms_tags %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">{% trans _('تسجيل حساب جديد') %}</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-primary w-100">{% trans _('تسجيل') %}</button>
+            </form>
+                <div class="mt-3 text-center">
+                    <a href="{% url 'accounts:login' %}">{% trans _('لديك حساب بالفعل؟ سجل الدخول') %}</a>
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">{% trans _('الملف الشخصي') %}</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="text-center mb-4">
+                            <img src="https://via.placeholder.com/150" class="rounded-circle" alt="{% trans _('صورة المستخدم') %}">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <table class="table table-borderless">
+                            <tr>
+                                <th>{% trans _('الاسم المستخدم') %}</th>
+                                <td>{{ user.username }}</td>
+                            </tr>
+                            <tr>
+                                <th>{% trans _('الاسم الكامل') %}</th>
+                                <td>{{ user.get_full_name }}</td>
+                            </tr>
+                            <tr>
+                                <th>{% trans _('البريد الإلكتروني') %}</th>
+                                <td>{{ user.email }}</td>
+                            </tr>
+                            <tr>
+                                <th>{% trans _('نوع المستخدم') %}</th>
+                                <td>{{ user.get_user_type_display }}</td>
+                            </tr>
+                            <tr>
+                                <th>{% trans _('اسم الشركة') %}</th>
+                                <td>{{ user.company_name|default:"-" }}</td>
+                            </tr>
+                            <tr>
+                                <th>{% trans _('رقم الهاتف') %}</th>
+                                <td>{{ user.phone_number|default:"-" }}</td>
+                            </tr>
+                        </table>
+                        <a href="{% url 'accounts:update_profile' %}" class="btn btn-primary">{% trans _('تعديل الملف الشخصي') %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
