@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load i18n crispy_forms_tags %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3 class="card-title">{% trans _({{ title }}) %}</h3>
+                    <div>
+                        <a href="{% url 'properties:unit_update' unit.pk %}" class="btn btn-sm btn-warning">
+                        <i class="fas fa-edit"></i> {% trans _('تعديل') %}
+                        </a>
+                        <a href="{% url 'properties:unit_delete' unit.pk %}" class="btn btn-sm btn-danger">
+                        <i class="fas fa-trash"></i> {% trans _('حذف') %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <table class="table table-bordered">
+                    <tr>
+                      <th>{% trans _('المبني') %}</th>
+                      <td>{{ unit.building.name }}</td>
+                    </tr>
+                    <tr>
+                      <th>{% trans _('نوع الوحدة') %}</th>
+                      <td>{{ unit.unit_type.name }}</td>
+                    </tr>
+                    <tr>
+                      <th>{% trans _('رقم الوحدة') %}</th>
+                      <td>{{ unit.unit_number }}</td>
+                    </tr>
+                    <tr>
+                      <th>{% trans _('الطابق') %}</th>
+                      <td>{{ unit.floor }}</td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="col-md-6">
+                  <table class="table table-bordered">
+                    <tr>
+                      <th>{% trans _('المساحة') %}</th>
+                      <td>{{ unit.area }}</td>
+                    </tr>
+                    <tr>
+                      <th>{% trans _('الإيجار الشهري') %}</th>
+                      <td>{{ unit.monthly_rent }}ر.ع.</td>
+                    </tr>
+                    <tr>
+                      <th>{% trans _('الحالة') %}</th>
+                      <td>{{ unit.get_status_display }}</td>
+                    </tr>
+                    <tr>
+                      <th>{% trans _('المميزات') %}</th>
+                      <td>{{ unit.features|linebreaksbr }}</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <h4 class="mt-4">
+                {% trans _('صور الوحدة') %}
+              </h4>
+              <div class="row">
+                {% for image in images %}
+                <div class="col-md-4 mb-3">
+                  <div class="card">
+                    <img src="{{ image.image.url }}" class="card-img-top" alt="{{ image.caption }}">
+                    <div class="card-body">
+                      <p class="card-text">{{ image.caption }}</p>
+                      {% if image.is_featured %}
+                      <span class="badge badge-success">
+                        {% trans _('صورة رئيسية') %}
+                      </span>
+                      {% endif %}
+                      <a href="{% url 'properties:unit_image_delete' image.pk %}" class="btn btn-sm btn-danger float-left">
+                        <i class="fas fa-trash"></i>
+                      </a>
+                    </div>
+                  </div>
+                  {% empty %}
+                  <div class="col-md-12">
+                    <p class="text-center">{% trans _('لا توجد صور مسجلة لهذه الوحدة') %}</p>
+                  </div>
+                  {% endfor %}
+                </div>
+                <h4 class="mt-4">
+                  {% trans _('إضافة صورة جديدة') %}
+                </h4>
+                <form method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{ form|crispy }}
+                  <button type="submit" class="btn btn-primary">{% trans _('حفظ الصورة') %}</button>
+                </form>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
