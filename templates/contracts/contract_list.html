@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n django_tables2 %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <div class="d-flex justify-content-between align-items-center">
+      <h3 class="card-title">{% trans _({{ title }}) %}</h3>
+      {% if request.user.user_type in 'INVESTOR,OWNER,ADMIN' %}
+      <a href="{% url 'contracts:contract_create' %}" class="btn btn-primary">
+        <i class="fas fa-plus"></i> {% trans _("إنشاء عقد جديد") %}
+      </a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="mb-3">
+      <a href="?status=ACTIVE" class="btn btn-sm btn-outline-success">
+        {% trans _("العقود النشطة") %}
+      </a>
+      <a href="?status=PENDING" class="btn btn-sm btn-outline-warning">
+        {% trans _("بانتظار التوقيع") %}
+      </a>
+      <a href="?status=EXPIRED" class="btn btn-sm btn-outline-danger">
+        {% trans _("العقود المنتهية") %}
+      </a>
+      <a href="?" class="btn btn-sm btn-outline-secondary">
+        {% trans _("عرض الكل") %}
+      </a>
+    </div>
+    {% render_table table %}
+  </div>
+</div>
+{% endblock %}
