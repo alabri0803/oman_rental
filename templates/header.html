@@ -1,3 +1,4 @@
+{% load i18n static %}
 <header class="bg-dark text-white p-3">
   <div class="container">
     <div class="d-flex justify-content-between align-items-center">
@@ -31,21 +32,21 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'home' %}">{% trans _("الرئيسية") %}</a>
+              <a class="nav-link" href="{% url 'pages:home' %}">{% trans _("الرئيسية") %}</a>
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'dashboard' %}">{% trans _("لوحة التحكم") %}</a>
+              <a class="nav-link" href="{% url 'pages:dashboard' %}">{% trans _("لوحة التحكم") %}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}">{% trans _("تسجيل الخروج") %}</a>
+              <a class="nav-link" href="{% url 'accounts:logout' %}">{% trans _("تسجيل الخروج") %}</a>
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}">{% trans _("تسجيل الدخول") %}</a>
+              <a class="nav-link" href="{% url 'accounts:login' %}">{% trans _("تسجيل الدخول") %}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'register' %}">{% trans _("تسجيل حساب جديد") %}</a>
+              <a class="nav-link" href="{% url 'accounts:register' %}">{% trans _("تسجيل حساب جديد") %}</a>
             </li>
             {% endif %}
           </ul>
