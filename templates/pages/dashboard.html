@@ -20,15 +20,15 @@
       </div>
       <div class="col-md-8">
         {% if user.user_type == 'OWNER' %}
-          {% include 'pages/owner_dashboard.html' %}
+          {% include 'dashboard/owner_dashboard.html' %}
         {% elif user.user_type == 'INVESTOR' %}
-          {% include 'pages/investor_dashboard.html' %}
+          {% include 'dashboard/investor_dashboard.html' %}
         {% elif user.user_type == 'TENANT' %}
-          {% include 'pages/tenant_dashboard.html' %}
+          {% include 'dashboard/tenant_dashboard.html' %}
         {% elif user.user_type == 'SIGNER' %}
-          {% include 'pages/signer_dashboard.html' %}
+          {% include 'dashboard/signer_dashboard.html' %}
         {% elif user.user_type == 'ADMIN' %}
-          {% include 'pages/admin_dashboard.html' %}
+          {% include 'dashboard/admin_dashboard.html' %}
         {% endif %}
       </div>
     </div>
