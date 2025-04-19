@@ -58,7 +58,7 @@ class ContractAmendmentAdmin(admin.ModelAdmin):
 
 @admin.register(ContractTermination)
 class ContractTerminationAdmin(admin.ModelAdmin):
-    list_display = ('contract', 'termination_date', 'approved')
-    list_filter = ('approved', 'termination_date')
+    list_display = ('contract', 'termination_date')
+    list_filter = ('termination_date',)
     search_fields = ('contract__contract_number', 'reason')
-    readonly_fields = ('initialed_by', 'created_at', 'approved_by')
+    readonly_fields = ('initiated_by', 'created_at', 'approved_by')

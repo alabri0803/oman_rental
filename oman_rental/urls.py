@@ -29,9 +29,9 @@ urlpatterns += i18n_patterns(
     path('accounts/', include('accounts.urls')),
     path('properties/', include('properties.urls')),
     path('contracts/', include('contracts.urls')),
-    path('payments/', include('payments.urls')),
-    path('maintenance/', include('maintenance.urls')),
-    path('reports/', include('reports.urls')),
+    #path('payments/', include('payments.urls')),
+    #path('maintenance/', include('maintenance.urls')),
+    #path('reports/', include('reports.urls')),
     path('', include('pages.urls')),
 )
 if settings.DEBUG:
